@@ -1,31 +1,27 @@
  //declare bacteria variables here  
- Bacteria duck, raven, fox, wolf, bear;
+ Bacteria [] colony = new Bacteria[100];
 
  void setup()   
  {     
  	//initialize bacteria variables here   
  	size(400, 400);
- 	duck = new Bacteria();
- 	raven = new Bacteria();
- 	fox = new Bacteria();
- 	wolf = new Bacteria();
- 	bear = new Bacteria();
+ 	for(int room = 0; room < colony.length; room++)
+ 	{
+ 		colony[room] = new Bacteria();
+ 	}
  }   
 
  void draw()   
  {    
  	//move and show the bacteria  
  	background(255);
- 	duck.show();
- 	duck.walk(); 
- 	raven.show();
- 	raven.walk();
- 	fox.show();
- 	fox.walk();  
- 	wolf.show();
- 	wolf.walk();
- 	bear.show();
- 	bear.walk();  
+ 	for(int num = 0; num < colony.length; num++)
+ 	{
+ 		//colony[num] = new Bacterica(num);
+ 		//colors = color() HERE!!!
+ 		colony[num].walk();
+ 		colony[num].show();
+ 	}
  }  
 
  class Bacteria    
@@ -39,12 +35,14 @@
  	}
  	void walk()
  	{
- 		myX = myX + (int) (Math.random()*3)-1;
- 		myY = myY + (int) (Math.random()*3)-1;
+ 		myX = myX + (int) (Math.random()*5)-2;
+ 		myY = myY + (int) (Math.random()*5)-2;
  	}
  	void show()
  	{
+ 		stroke(255);
  		fill(colors);
- 		ellipse(myX, myY, 15, 15);
+ 		ellipse(myX, myY, 10, 10);
+ 		//point(myX, myY, 5, 5);
  	}   
  }    
