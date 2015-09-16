@@ -1,5 +1,6 @@
  //declare bacteria variables here  
  Bacteria [] colony = new Bacteria[100];
+ void pop = 100;
 
  void setup()   
  {     
@@ -9,6 +10,7 @@
  	{
  		colony[room] = new Bacteria();
  	}
+ 	//text("Population: " + pop, 200, 200); HERE!!
  }   
 
  void draw()   
@@ -17,8 +19,6 @@
  	background(255);
  	for(int num = 0; num < colony.length; num++)
  	{
- 		//colony[num] = new Bacterica(num);
- 		//colors = color() HERE!!!
  		colony[num].walk();
  		colony[num].show();
  	}
@@ -31,7 +31,7 @@
  	{
  		myX = 200;
  		myY = 200;
- 		colors = color(0, 191, 255);
+ 		colors = color((int)(Math.random()*113)+112, (int)(Math.random()*113)+112, (int)(Math.random()*113)+112);
  	}
  	void walk()
  	{
@@ -40,9 +40,7 @@
  	}
  	void show()
  	{
- 		stroke(255);
  		fill(colors);
  		ellipse(myX, myY, 10, 10);
- 		//point(myX, myY, 5, 5);
  	}   
  }    

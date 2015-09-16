@@ -16,6 +16,7 @@ public class Chemotaxis extends PApplet {
 
  //declare bacteria variables here  
  Bacteria [] colony = new Bacteria[100];
+ void pop = 100;
 
  public void setup()   
  {     
@@ -25,6 +26,7 @@ public class Chemotaxis extends PApplet {
  	{
  		colony[room] = new Bacteria();
  	}
+ 	text("Population: " + pop, 200, 200);
  }   
 
  public void draw()   
@@ -33,7 +35,6 @@ public class Chemotaxis extends PApplet {
  	background(255);
  	for(int num = 0; num < colony.length; num++)
  	{
- 		//colony[num] = new Bacterica(num);
  		colony[num].walk();
  		colony[num].show();
  	}
@@ -46,7 +47,7 @@ public class Chemotaxis extends PApplet {
  	{
  		myX = 200;
  		myY = 200;
- 		colors = color(0, 191, 255);
+ 		colors = color((int)(Math.random()*113)+112, (int)(Math.random()*113)+112, (int)(Math.random()*113)+112);
  	}
  	public void walk()
  	{
@@ -55,10 +56,8 @@ public class Chemotaxis extends PApplet {
  	}
  	public void show()
  	{
- 		stroke(255);
  		fill(colors);
  		ellipse(myX, myY, 10, 10);
- 		//point(myX, myY, 5, 5);
  	}   
  }    
   static public void main(String[] passedArgs) {
