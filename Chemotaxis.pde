@@ -1,27 +1,40 @@
  //declare bacteria variables here  
- Bacteria [] colony = new Bacteria[100];
- void pop = 100;
+  int pop = 100;
+ Bacteria [] colony = new Bacteria[pop]; //make "rooms"
 
  void setup()   
  {     
  	//initialize bacteria variables here   
  	size(400, 400);
- 	for(int room = 0; room < colony.length; room++)
+ 	for(int make = 0; make < colony.length; make++) //make bacteria
  	{
- 		colony[room] = new Bacteria();
+ 		colony[make] = new Bacteria();
  	}
- 	//text("Population: " + pop, 200, 200); HERE!!
  }   
 
  void draw()   
  {    
  	//move and show the bacteria  
  	background(255);
- 	for(int num = 0; num < colony.length; num++)
+ 	for(int num = 0; num < colony.length; num++) //show
  	{
  		colony[num].walk();
  		colony[num].show();
  	}
+ 	
+ 	int addSub = (int)(Math.random()*10)
+ 	if(addSub = 3)
+ 	{
+ 		pop++; //population increase
+ 	}
+ 	else if(addSub = 7) 
+ 	{
+ 		pop--; //population decrease
+ 	}
+
+ 	fill(0);
+ 	textSize(20);
+ 	text("Population: " + pop, 2, 21);
  }  
 
  class Bacteria    
@@ -42,5 +55,4 @@
  	{
  		fill(colors);
  		ellipse(myX, myY, 10, 10);
- 	}   
  }    
