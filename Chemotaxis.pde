@@ -17,12 +17,20 @@
  {    
  	//move and show the bacteria  
  	background(255);
+ 	for(int foodY = 75; foodY < 400; foodY += 250 ) //food
+ 	{
+ 		for(int foodX = 75; foodX < 400; foodX += 250)
+ 		{
+ 			fill(0);
+ 			ellipse(foodX, foodY, 15, 15);
+ 		}
+ 	}
+ 	
  	for(int num = 0; num < colony.length; num++) //show
  	{
  		colony[num].walk();
  		colony[num].show();
  	}
- 	
 	/*int addSub = (int)(Math.random()*51);
  	if(addSub == 25)
  	{
@@ -42,18 +50,24 @@
 
  class Bacteria    
  {     
- 	int myX, myY, colors, addSub;
+ 	int myX, myY, colors, addSub, speed;
  	Bacteria()
  	{
  		myX = 200;
  		myY = 200;
  		colors = color((int)(Math.random()*113)+112, (int)(Math.random()*113)+112, (int)(Math.random()*113)+112);
- 		
+ 		speed = 2; // for biased walk
  	}
  	void walk()
  	{
- 		myX = myX + (int) (Math.random()*5)-2;
- 		myY = myY + (int) (Math.random()*5)-2;
+ 		//(int)(Math.random()*5)
+ 		double dRandom = 0;
+ 		myX = myX + (int) (Math.random()*5)-speed;
+ 		myY = myY + (int) (Math.random()*5)-speed;
+ 		if(dRandom == 0) //go to top left food
+ 		{
+ 			speed = 3;
+	 	}	
  	}
  	void show()
  	{

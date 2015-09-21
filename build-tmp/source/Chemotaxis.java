@@ -38,6 +38,14 @@ public class Chemotaxis extends PApplet {
  		colony[num].walk();
  		colony[num].show();
  	}
+ 	for(int foodY = 75; foodY < 400; foodY += 250 ) //food
+ 	{
+ 		for(int foodX = 75; foodX < 400; foodX += 250)
+ 		{
+ 			fill(0);
+ 			ellipse(foodX, foodY, 15, 15);
+ 		}
+ 	}
  	
 	/*int addSub = (int)(Math.random()*51);
  	if(addSub == 25)
@@ -58,28 +66,24 @@ public class Chemotaxis extends PApplet {
 
  class Bacteria    
  {     
- 	int myX, myY, colors, addSub;
+ 	int myX, myY, colors, addSub, speed;
  	Bacteria()
  	{
  		myX = 200;
  		myY = 200;
  		colors = color((int)(Math.random()*113)+112, (int)(Math.random()*113)+112, (int)(Math.random()*113)+112);
- 		
+ 		speed = 2; // for biased walk
  	}
  	public void walk()
  	{
- 		myX = myX + (int) (Math.random()*5)-2;
- 		myY = myY + (int) (Math.random()*5)-2;
- 		if(get(myX+10, myY+10) != color(255, 255, 255))
+ 		//(int)(Math.random()*5)
+ 		double dRandom = 0;
+ 		myX = myX + (int) (Math.random()*5)-speed;
+ 		myY = myY + (int) (Math.random()*5)-speed;
+ 		if(dRandom == 0) //go to top left food
  		{
- 			myX = myX + (int) (Math.random()*3)-2; //go left
- 			myY = myY + (int) (Math.random()*3)-2; //go up
- 		}
- 		if(get(myX-10, myY-10) != color(255, 255, 255))
- 		{
- 			myX = myX + (int) (Math.random()*3); //go right
- 			myY = myY + (int) (Math.random()*3); //go down
- 		}
+ 			speed = 3;
+	 	}	
  	}
  	public void show()
  	{
