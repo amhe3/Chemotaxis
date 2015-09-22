@@ -1,5 +1,5 @@
  //declare bacteria variables here  
- int pop = 5;
+ int pop = 100;
  Bacteria [] colony = new Bacteria[pop]; //make "rooms"
 
  void setup()   
@@ -50,25 +50,53 @@
 
  class Bacteria    
  {     
- 	int myX, myY, colors, addSub, speed;
+ 	int myX, myY, colors, addSub, speedX, speedY;
  	Bacteria()
  	{
  		myX = 200;
  		myY = 200;
  		colors = color((int)(Math.random()*113)+112, (int)(Math.random()*113)+112, (int)(Math.random()*113)+112);
- 		speed = 2; // for biased walk
+ 		speedX = 2; // for biased walk
+ 		speedY = 2; // for biased walk
  	}
  	void walk()
  	{
  		//(int)(Math.random()*5)
- 		double dRandom = 0;
- 		myX = myX + (int) (Math.random()*5)-speed;
- 		myY = myY + (int) (Math.random()*5)-speed;
- 		if(dRandom == 0) //go to top left food
+ 		double dRandom = (int)(Math.random()*4);
+ 		myX = myX + (int) (Math.random()*5)-speedX;
+ 		myY = myY + (int) (Math.random()*5)-speedY;
+ 		/*if(dRandom == 0) //go to top left food
  		{
- 			speed = 3;
+ 			speedX = 3;
+ 			speedY = 3;
 	 	}	
+	 	else if(dRandom == 1) //go to top right food
+ 		{
+ 			speedX = 1;
+ 			speedY = 3;
+	 	}
+	 	else if(dRandom == 2) //go to bottom left food
+ 		{
+ 			speedX = 3;
+ 			speedY = 1;
+	 	}
+	 	else if(dRandom == 3) //go to bottom right food
+ 		{
+ 			speedX = 1;
+ 			speedY = 1;
+	 	}*/
  	}
+
+ 	void eaten()
+ 	{
+ 		fill(255, 0, 0);
+ 		ellipse(15, 15, mouseX, mouseY);
+ 		if((mouseX + 15 || mouseY + 15 || mouseX - 15 || mouseY -15)
+ 		{
+ 			colors = color(0);
+ 		}
+ 	}
+
  	void show()
  	{
  		fill(colors);
