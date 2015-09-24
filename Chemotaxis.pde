@@ -1,6 +1,9 @@
  //declare bacteria variables here  
- int pop = 100;
- Bacteria [] colony = new Bacteria[pop]; //make "rooms"
+int numEaten = 0;
+int predatorX = 10;
+int predatorY = 10;
+
+ Bacteria [] colony = new Bacteria[100]; //make "rooms"
 
  void setup()   
  {     
@@ -31,47 +34,44 @@
  	{
  		colony[num].walk();
  		colony[num].show();
- 		colony[1].predEat();
- 		colony[1].predator();
+ 		colony[1].food();
  	}
+ 	stroke(0);
+ 	fill(255, 0, 0);
+	ellipse(predatorX, predatorY, 15, 15); //draw predator
+	if(get(predatorX,predatorY) != color(255, 255, 255))
+		{
+			//HERE!!
+		}
 
-//predator();
-	/*int addSub = (int)(Math.random()*51);
- 	if(addSub == 25)
- 	{
- 		pop++; //population increase
- 		redraw();
- 	}
- 	else if(addSub == 50) 
- 	{
- 		pop--; //population decrease
- 		redraw();
- 	}
-
+/*
  	fill(0);
  	textSize(20);
- 	text("Population: " + pop, 2, 21);*/
+ 	text("Eaten: " + numEaten, 2, 21);*/
  }  
 
-void keyPressed()
+void keyPressed() 
 {
-	if(key == CODED)
+	if(key == CODED) //for predator control 
 	{
 		if(keyCode == UP)
 		{
-			ellipse(200, 200, 200, 200);
+			predatorY-=5;
 			//make shark go up
 		}
 		else if(keyCode == DOWN)
 		{
+			predatorY+=5;
 			//make shark go down
 		}
 		else if(keyCode == RIGHT)
 		{
+			predatorX+=5;
 			//make shark go right and face right
 		}
 		else if(keyCode == LEFT)
 		{
+			predatorX-=5;
 			//make shark go left and face left
 		}
 
@@ -80,7 +80,7 @@ void keyPressed()
 
  class Bacteria    
  {     
- 	int myX, myY, colors, addSub, speedX, speedY;
+ 	int myX, myY, colors, speedX, speedY;
  	Bacteria()
  	{
  		myX = 200;
@@ -117,18 +117,13 @@ void keyPressed()
 	 	}*/
  	}
 
- 	 void predator()
+ 	 void food()
  	{
  		noStroke();
- 		fill(255, 0, 0);
- 		ellipse(mouseX, mouseY, 15, 15);
- 	}
- 	void predEat()
- 	{
- 		if(get(mouseX, mouseY) != color(225, 255, 255))
- 		{
- 			colors = color(225, 255, 255);
- 		}
+ 		fill(0, 255, 0);
+ 		ellipse(mouseX-3, mouseY-2, 5, 5);
+ 		ellipse(mouseX+7, mouseY+6, 5, 5);
+ 		ellipse(mouseX+6, mouseY-3, 5, 5);
  	}
 
  	void show()

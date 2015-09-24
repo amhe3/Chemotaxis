@@ -15,14 +15,17 @@ import java.io.IOException;
 public class Chemotaxis extends PApplet {
 
  //declare bacteria variables here  
- int pop = 100;
+int pop = 100;
+int predatorX = 10;
+int predatorY = 10;
+
  Bacteria [] colony = new Bacteria[pop]; //make "rooms"
 
  public void setup()   
  {     
  	//initialize bacteria variables here   
  	size(400, 400);
- 	frameRate(30);
+ 	//frameRate(30);
  	for(int make = 0; make < colony.length; make++) //make bacteria
  	{
  		colony[make] = new Bacteria();
@@ -47,10 +50,11 @@ public class Chemotaxis extends PApplet {
  	{
  		colony[num].walk();
  		colony[num].show();
- 		colony[1].predEat();
- 		colony[1].predator();
+ 		colony[1].food();
  	}
-
+ 	stroke(0);
+ 	fill(255, 0, 0);
+	ellipse(predatorX, predatorY, 15, 15);
 //predator();
 	/*int addSub = (int)(Math.random()*51);
  	if(addSub == 25)
@@ -75,19 +79,22 @@ public void keyPressed()
 	{
 		if(keyCode == UP)
 		{
-			ellipse(200, 200, 200, 200);
+			predatorY-=5;
 			//make shark go up
 		}
 		else if(keyCode == DOWN)
 		{
+			predatorY+=5;
 			//make shark go down
 		}
 		else if(keyCode == RIGHT)
 		{
+			predatorX+=5;
 			//make shark go right and face right
 		}
 		else if(keyCode == LEFT)
 		{
+			predatorX-=5;
 			//make shark go left and face left
 		}
 
@@ -133,18 +140,13 @@ public void keyPressed()
 	 	}*/
  	}
 
- 	 public void predator()
+ 	 public void food()
  	{
  		noStroke();
- 		fill(255, 0, 0);
- 		ellipse(mouseX, mouseY, 15, 15);
- 	}
- 	public void predEat()
- 	{
- 		if(get(mouseX, mouseY) != color(225, 255, 255))
- 		{
- 			colors = color(225, 255, 255);
- 		}
+ 		fill(0, 255, 0);
+ 		ellipse(mouseX-3, mouseY-2, 5, 5);
+ 		ellipse(mouseX+7, mouseY+6, 5, 5);
+ 		ellipse(mouseX+6, mouseY-3, 5, 5);
  	}
 
  	public void show()
