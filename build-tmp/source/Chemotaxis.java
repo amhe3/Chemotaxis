@@ -15,17 +15,19 @@ import java.io.IOException;
 public class Chemotaxis extends PApplet {
 
  //declare bacteria variables here  
-int pop = 100;
+int numEaten = 0;
 int predatorX = 10;
 int predatorY = 10;
+//Bacteria pred;
+Bacteria pred = new Bacteria();
 
- Bacteria [] colony = new Bacteria[pop]; //make "rooms"
+ Bacteria [] colony = new Bacteria[100]; //make "rooms"
 
  public void setup()   
  {     
  	//initialize bacteria variables here   
  	size(400, 400);
- 	//frameRate(30);
+ 	frameRate(30);
  	for(int make = 0; make < colony.length; make++) //make bacteria
  	{
  		colony[make] = new Bacteria();
@@ -37,45 +39,26 @@ int predatorY = 10;
  {    
  	//move and show the bacteria  
  	background(255);
- 	/*for(int foodY = 75; foodY < 400; foodY += 250 ) //food
- 	{
- 		for(int foodX = 75; foodX < 400; foodX += 250)
- 		{
- 			fill(0);
- 			ellipse(foodX, foodY, 15, 15);
- 		}
- 	}*/
- 	
  	for(int num = 0; num < colony.length; num++) //show
  	{
+ 		
+ 		//pred.food();
  		colony[num].walk();
  		colony[num].show();
- 		colony[1].food();
+ 		pred.predator();
  	}
- 	stroke(0);
- 	fill(255, 0, 0);
-	ellipse(predatorX, predatorY, 15, 15);
-//predator();
-	/*int addSub = (int)(Math.random()*51);
- 	if(addSub == 25)
- 	{
- 		pop++; //population increase
- 		redraw();
- 	}
- 	else if(addSub == 50) 
- 	{
- 		pop--; //population decrease
- 		redraw();
- 	}
+ 	
+ 	
 
+/*
  	fill(0);
  	textSize(20);
- 	text("Population: " + pop, 2, 21);*/
+ 	text("Eaten: " + numEaten, 2, 21);*/
  }  
 
-public void keyPressed()
+public void keyPressed() 
 {
-	if(key == CODED)
+	if(key == CODED) //for predator control 
 	{
 		if(keyCode == UP)
 		{
@@ -103,7 +86,7 @@ public void keyPressed()
 
  class Bacteria    
  {     
- 	int myX, myY, colors, addSub, speedX, speedY;
+ 	int myX, myY, colors, speedX, speedY;
  	Bacteria()
  	{
  		myX = 200;
@@ -140,17 +123,28 @@ public void keyPressed()
 	 	}*/
  	}
 
- 	 public void food()
+ 	public void predator()
+ 	{
+		if(get(predatorX+16,predatorY+16) != color(255, 255, 255))
+		{
+			colors = color(255, 255, 255);
+		}
+ 	}
+
+ 	 /*void food()
  	{
  		noStroke();
  		fill(0, 255, 0);
  		ellipse(mouseX-3, mouseY-2, 5, 5);
  		ellipse(mouseX+7, mouseY+6, 5, 5);
  		ellipse(mouseX+6, mouseY-3, 5, 5);
- 	}
+ 	}*/
 
  	public void show()
  	{
+ 		stroke(0);
+ 		fill(255, 0, 0);
+		ellipse(predatorX, predatorY, 15, 15); //draw predator
  		noStroke();
  		fill(colors);
  		ellipse(myX, myY, 10, 10);

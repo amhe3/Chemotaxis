@@ -2,6 +2,8 @@
 int numEaten = 0;
 int predatorX = 10;
 int predatorY = 10;
+//Bacteria pred;
+Bacteria pred = new Bacteria();
 
  Bacteria [] colony = new Bacteria[100]; //make "rooms"
 
@@ -21,28 +23,16 @@ int predatorY = 10;
  {    
  	//move and show the bacteria  
  	background(255);
- 	/*for(int foodY = 75; foodY < 400; foodY += 250 ) //food
- 	{
- 		for(int foodX = 75; foodX < 400; foodX += 250)
- 		{
- 			fill(0);
- 			ellipse(foodX, foodY, 15, 15);
- 		}
- 	}*/
- 	
  	for(int num = 0; num < colony.length; num++) //show
  	{
+ 		
+ 		//pred.food();
  		colony[num].walk();
  		colony[num].show();
- 		colony[1].food();
+ 		pred.predator();
  	}
- 	stroke(0);
- 	fill(255, 0, 0);
-	ellipse(predatorX, predatorY, 15, 15); //draw predator
-	if(get(predatorX,predatorY) != color(255, 255, 255))
-		{
-			//HERE!!
-		}
+ 	
+ 	
 
 /*
  	fill(0);
@@ -117,17 +107,28 @@ void keyPressed()
 	 	}*/
  	}
 
- 	 void food()
+ 	void predator()
+ 	{
+		if(get(predatorX+16,predatorY+16) != color(255, 255, 255))
+		{
+			colors = color(255, 255, 255);
+		}
+ 	}
+
+ 	 /*void food()
  	{
  		noStroke();
  		fill(0, 255, 0);
  		ellipse(mouseX-3, mouseY-2, 5, 5);
  		ellipse(mouseX+7, mouseY+6, 5, 5);
  		ellipse(mouseX+6, mouseY-3, 5, 5);
- 	}
+ 	}*/
 
  	void show()
  	{
+ 		stroke(0);
+ 		fill(255, 0, 0);
+		ellipse(predatorX, predatorY, 15, 15); //draw predator
  		noStroke();
  		fill(colors);
  		ellipse(myX, myY, 10, 10);
